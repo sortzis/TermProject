@@ -19,7 +19,8 @@ namespace TermProject.Models
                     City = "Seattle",
                     State = "Washington",
                     Email = "jjohnson@gmail.com",
-                    PhoneNumber = "5559874563"
+                    PhoneNumber = "5559874563",
+                    MenuId = 1
                 },
                 new Loyalty
                 {
@@ -29,7 +30,8 @@ namespace TermProject.Models
                     City = "Olympia",
                     State = "Washington",
                     Email = "rrobertson@gmail.com",
-                    PhoneNumber = "5559875823"
+                    PhoneNumber = "5559875823",
+                    MenuId = 3
                 },
                 new Loyalty
                 {
@@ -39,9 +41,32 @@ namespace TermProject.Models
                     City = "Portland",
                     State = "Oregon",
                     Email = "richierich@gmail.com",
-                    PhoneNumber = "5552584596"
+                    PhoneNumber = "5552584596",
+                    MenuId = 2
+                }
+                );
+            modelBuilder.Entity<Menu>().HasData(
+                new Menu 
+                {
+                    MenuId = 1,
+                    Name = "Breadstix",
+                    LoyaltyTier = "Newbie"
+                },
+                new Menu
+                {
+                    MenuId = 2,
+                    Name = "Wings",
+                    LoyaltyTier = "Novice"
+                },
+                new Menu
+                {
+                    MenuId = 3,
+                    Name = "Pizza",
+                    LoyaltyTier = "Veteran"
                 }
                 );
         }
+
+        public DbSet<TermProject.Models.Menu>? Menu { get; set; }
     }
 }

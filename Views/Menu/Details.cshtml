@@ -1,0 +1,29 @@
+﻿@model TermProject.Models.Menu
+
+@{
+    ViewData["Title"] = "Details";
+}
+
+<h1 class="p-4 mb-3 shadow" style="background-color:lightskyblue;border-radius:10px;">Menu Details</h1>
+
+<div>
+    <hr />
+    <dl class="row">
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.Name)
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.Name)
+        </dd>
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.LoyaltyTier)
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.LoyaltyTier)
+        </dd>
+    </dl>
+</div>
+<div>
+    <a asp-action="Edit" asp-route-id="@Model?.MenuId">Edit</a> |
+    <a asp-action="Index">Back to List</a>
+</div>

@@ -1,0 +1,38 @@
+﻿@model TermProject.Models.Menu
+
+@{
+    ViewData["Title"] = "Edit";
+}
+
+<h1 class="p-4 mb-3 shadow" style="background-color:lightskyblue;border-radius:10px;">Edit a Menu Item</h1>
+
+<hr />
+<div class="row">
+    <div class="col-md-4">
+        <form asp-action="Edit">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <input type="hidden" asp-for="MenuId" />
+            <div class="form-group">
+                <label asp-for="Name" class="control-label"></label>
+                <input asp-for="Name" class="form-control" />
+                <span asp-validation-for="Name" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="LoyaltyTier" class="control-label"></label>
+                <input asp-for="LoyaltyTier" class="form-control" />
+                <span asp-validation-for="LoyaltyTier" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <input type="submit" value="Save" class="btn btn-primary" />
+            </div>
+        </form>
+    </div>
+</div>
+
+<div>
+    <a asp-action="Index">Back to List</a>
+</div>
+
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}
