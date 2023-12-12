@@ -1,0 +1,30 @@
+﻿﻿body {
+    font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+    background-color: gainsboro;
+    color: black;
+}
+
+a {
+    color: silver;
+    text-decoration: none;
+    padding: 10px;
+}
+
+    a:hover {
+        font-size: 1.2em;
+        text-shadow: 1px 1px 10px silver;
+        border-radius: 10px;
+        text-decoration: none;
+        color: silver;
+    }
+
+.nav-link:hover {
+    color: white;
+    background-color: silver;
+    text-decoration: none;
+    border-radius: 10px;
+}
+
+.nav-link {
+    color: lightskyblue !important;
+}
