@@ -25,6 +25,15 @@ namespace TermProject
                 options.UseSqlServer(connectionString));
             
             builder.Services.AddControllersWithViews();
+            builder.Services.Configure<IdentityOptions>(options =>
+            {
+                //Default password settings
+                options.Password.RequireDigit = true;
+                options.Password.RequireLowercase = true;
+                options.Password.RequireUppercase = true;
+                options.Password.RequiredLength = 10;
+                options.Password.RequiredUniqueChars = 1;
+            });
 
             var app = builder.Build();
 

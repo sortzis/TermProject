@@ -97,6 +97,28 @@ namespace TermProject.Migrations
                             MenuId = 2,
                             PhoneNumber = "5552584596",
                             State = "Oregon"
+                        },
+                        new
+                        {
+                            ID = 4,
+                            City = "Seattle",
+                            Email = "jjohnson@gmail.com",
+                            FirstName = "Josh",
+                            LastName = "Johnson",
+                            MenuId = 3,
+                            PhoneNumber = "5559874563",
+                            State = "Washington"
+                        },
+                        new
+                        {
+                            ID = 5,
+                            City = "Seattle",
+                            Email = "jjohnson@gmail.com",
+                            FirstName = "Jared",
+                            LastName = "Johnson",
+                            MenuId = 1,
+                            PhoneNumber = "5559874563",
+                            State = "Washington"
                         });
                 });
 

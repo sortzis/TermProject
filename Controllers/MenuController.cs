@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
@@ -9,6 +10,7 @@ using TermProject.Models;
 
 namespace TermProject.Controllers
 {
+    [Authorize]
     public class MenuController : Controller
     {
         private readonly PizzaContext _context;
@@ -19,6 +21,7 @@ namespace TermProject.Controllers
         }
 
         // GET: Menu
+        [AllowAnonymous]
         public async Task<IActionResult> Index()
         {
               return _context.Menu != null ? 
@@ -27,6 +30,7 @@ namespace TermProject.Controllers
         }
 
         // GET: Menu/Details/5
+        [AllowAnonymous]
         public async Task<IActionResult> Details(int? id)
         {
             if (id == null || _context.Menu == null)

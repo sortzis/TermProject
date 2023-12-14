@@ -43,6 +43,28 @@ namespace TermProject.Models
                     Email = "richierich@gmail.com",
                     PhoneNumber = "5552584596",
                     MenuId = 2
+                },
+                new Loyalty
+                {
+                    ID = 4,
+                    FirstName = "Josh",
+                    LastName = "Johnson",
+                    City = "Seattle",
+                    State = "Washington",
+                    Email = "jjohnson@gmail.com",
+                    PhoneNumber = "5559874563",
+                    MenuId = 3
+                },
+                new Loyalty
+                {
+                    ID = 5,
+                    FirstName = "Jared",
+                    LastName = "Johnson",
+                    City = "Seattle",
+                    State = "Washington",
+                    Email = "jjohnson@gmail.com",
+                    PhoneNumber = "5559874563",
+                    MenuId = 1
                 }
                 );
             modelBuilder.Entity<Menu>().HasData(

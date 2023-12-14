@@ -6,9 +6,11 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
 using TermProject.Models;
+using Microsoft.AspNetCore.Authorization;
 
 namespace TermProject.Controllers
 {
+    [Authorize]
     public class LoyaltyController : Controller
     {
         private readonly PizzaContext _context;
@@ -19,14 +21,54 @@ namespace TermProject.Controllers
         }
 
         // GET: Loyalty
-        public async Task<IActionResult> Index()
+        [AllowAnonymous]
+        public async Task<IActionResult> Index(string sortOrder, string searchString, string currentFilter, int? pageNumber) 
         {
-              return _context.Loyalties != null ? 
-                          View(await _context.Loyalties.ToListAsync()) :
-                          Problem("Entity set 'PizzaContext.Loyalties'  is null.");
+            var loyalties = from m in _context.Loyalties.Include(a => a.Menu)
+                            select m;
+
+            ViewData["CurrentSort"] = sortOrder;
+            ViewData["NameSortParm"] = String.IsNullOrEmpty(sortOrder) ? "name_desc" : "";
+
+            if (searchString != null)
+            {
+                pageNumber = 1;
+            }
+            else
+            {
+                searchString = currentFilter;
+            }
+
+            ViewData["CurrentFilter"] = searchString;
+            
+            if(_context.Loyalties == null)
+            {
+                return Problem("No results");
+            }
+
+            if (!String.IsNullOrEmpty(searchString))
+            {
+                loyalties = loyalties.Where(m => m.FirstName.Contains(searchString)
+                || m.LastName.Contains(searchString)
+                || m.City.Contains(searchString)
+                || m.State.Contains(searchString));
+            }
+            switch (sortOrder)
+            {
+                case "name_desc":
+                    loyalties = loyalties.OrderByDescending(m => m.LastName);
+                    break;
+                default:
+                    loyalties = loyalties.OrderBy(m => m.LastName);
+                    break;
+            }
+
+            int pageSize = 3;
+            return View(await PaginatedList<Loyalty>.CreateAsync(loyalties.AsNoTracking(), pageNumber ?? 1, pageSize));
         }
 
         // GET: Loyalty/Details/5
+        [AllowAnonymous]
         public async Task<IActionResult> Details(int? id)
         {
             if (id == null || _context.Loyalties == null)
